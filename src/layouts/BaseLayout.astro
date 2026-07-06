@@ -1,0 +1,74 @@
+---
+import { Font } from 'astro:assets';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CopyCodeButton from '../components/CopyCodeButton.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const { title, description, ogImage, jsonLd } = Astro.props;
+
+const siteName = 'Jemimah — Bitcoin & Lightning open source';
+const pageTitle = title === siteName ? title : `${title} · Jemimah`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const resolvedOgImage = ogImage ? new URL(ogImage, Astro.site).toString() : new URL('/og-default.png', Astro.site).toString();
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Jemimah',
+  url: 'https://nagasha.dev',
+  jobTitle: 'Open Source Bitcoin & Lightning Developer',
+  sameAs: ['https://github.com/Jem256'],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Jemimah's blog" href="/rss.xml" />
+    <link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:image" content={resolvedOgImage} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <Font cssVariable="--font-body" preload />
+    <Font cssVariable="--font-heading" preload />
+    <Font cssVariable="--font-mono" />
+
+    <script is:inline>
+      (function () {
+        const stored = localStorage.getItem('theme');
+        const theme = stored ?? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd ?? personJsonLd)} is:inline />
+  </head>
+  <body>
+    <a href="#content" class="skip-link">Skip to content</a>
+    <Header />
+    <main id="content" data-pagefind-body>
+      <slot />
+    </main>
+    <Footer />
+    <CopyCodeButton />
+  </body>
+</html>

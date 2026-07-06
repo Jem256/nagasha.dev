@@ -1,0 +1,29 @@
+---
+import { TAG_LABELS, type Tag } from '../data/tags';
+
+interface Props {
+  tag: Tag;
+}
+
+const { tag } = Astro.props;
+---
+
+<a href={`/tags/${tag}/`} class="tag-badge">{TAG_LABELS[tag] ?? tag}</a>
+
+<style>
+  .tag-badge {
+    display: inline-block;
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    background: var(--color-bg-offset);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 0.15rem 0.65rem;
+    text-decoration: none;
+  }
+
+  .tag-badge:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+</style>

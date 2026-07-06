@@ -1,0 +1,19 @@
+---
+interface Props {
+  hasMermaid?: boolean;
+}
+
+const { hasMermaid = false } = Astro.props;
+---
+
+{
+  hasMermaid && (
+    <script>
+      import('mermaid').then(({ default: mermaid }) => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        mermaid.initialize({ startOnLoad: false, theme: isDark ? 'dark' : 'default' });
+        mermaid.run({ querySelector: '.language-mermaid' });
+      });
+    </script>
+  )
+}

@@ -1,0 +1,73 @@
+---
+import { getRelatedEntries } from '../lib/related';
+import { entryUrl, collectionLabel } from '../lib/urls';
+import { formatDate } from '../lib/date';
+import type { TaggableCollection } from '../lib/collections';
+
+interface Props {
+  tags: string[];
+  excludeId: string;
+  collections?: TaggableCollection[];
+}
+
+const { tags, excludeId, collections = ['blog', 'til', 'worklog', 'notes', 'projects'] } = Astro.props;
+const related = await getRelatedEntries(collections, tags, excludeId);
+---
+
+{
+  related.length > 0 && (
+    <aside class="related-posts">
+      <h2>Related</h2>
+      <ul>
+        {related.map(({ collection, entry }) => (
+          <li>
+            <span class="related-kind">{collectionLabel(collection)}</span>
+            <a href={entryUrl(collection, entry.id)}>{entry.data.title}</a>
+            <span class="related-date">{formatDate(entry.data.date)}</span>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  )
+}
+
+<style>
+  .related-posts {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .related-posts h2 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .related-posts ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .related-posts li {
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+    padding: 0.4rem 0;
+    font-size: 0.92rem;
+  }
+
+  .related-kind {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-text-muted);
+    min-width: 4.5rem;
+  }
+
+  .related-date {
+    margin-left: auto;
+    color: var(--color-text-muted);
+    font-size: 0.82rem;
+  }
+</style>

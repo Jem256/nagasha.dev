@@ -1,0 +1,30 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="prose site-footer-inner">
+    <p>
+      Built by Jemimah &middot; <a href="https://github.com/Jem256">GitHub</a> &middot;
+      <a href="/rss.xml">RSS</a> &middot; <a href="https://github.com/Jem256/nagasha.dev">Source</a>
+    </p>
+    <p class="muted">&copy; {year} Jemimah. Content licensed MIT unless noted otherwise.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    margin-top: 4rem;
+  }
+
+  .site-footer-inner {
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+    font-size: 0.9rem;
+  }
+
+  .muted {
+    color: var(--color-text-muted);
+  }
+</style>

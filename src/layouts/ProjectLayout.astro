@@ -1,0 +1,75 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import TagList from '../components/TagList.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
+import EditOnGitHub from '../components/EditOnGitHub.astro';
+import type { Tag } from '../data/tags';
+
+interface Props {
+  id: string;
+  title: string;
+  description?: string;
+  status: 'active' | 'archived';
+  role?: string;
+  repo?: string;
+  website?: string;
+  tags: Tag[];
+}
+
+const { id, title, description, status, role, repo, website, tags } = Astro.props;
+const filePath = `content/projects/${id}.md`;
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="prose">
+    <header class="project-header">
+      <h1>{title}</h1>
+      <p class="project-meta">
+        <span class:list={['project-status', `project-status-${status}`]}>{status}</span>
+        {role && <span> &middot; {role}</span>}
+      </p>
+      <p class="project-links">
+        {repo && <a href={repo}>Repository</a>}
+        {website && <a href={website}>Website</a>}
+      </p>
+      <TagList tags={tags} />
+    </header>
+
+    <div class="project-content">
+      <slot />
+    </div>
+
+    <footer class="project-footer">
+      <EditOnGitHub filePath={filePath} />
+    </footer>
+
+    <RelatedPosts tags={tags} excludeId={id} collections={['blog', 'til', 'worklog']} />
+  </article>
+</BaseLayout>
+
+<style>
+  .project-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .project-meta {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    text-transform: capitalize;
+  }
+
+  .project-status-active {
+    color: var(--color-accent);
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .project-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+</style>

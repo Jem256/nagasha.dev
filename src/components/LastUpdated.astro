@@ -1,0 +1,22 @@
+---
+import { getLastUpdated } from '../../scripts/git-last-updated.mjs';
+import { formatDate } from '../lib/date';
+
+interface Props {
+  filePath: string;
+  fallback?: Date;
+}
+
+const { filePath, fallback } = Astro.props;
+const gitDate = getLastUpdated(filePath);
+const date = gitDate ?? fallback;
+---
+
+{date && <p class="last-updated">Last updated {formatDate(date)}</p>}
+
+<style>
+  .last-updated {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+</style>

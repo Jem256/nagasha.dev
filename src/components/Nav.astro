@@ -1,0 +1,49 @@
+---
+const links = [
+  { href: '/blog/', label: 'Blog' },
+  { href: '/til/', label: 'TIL' },
+  { href: '/worklog/', label: 'Work Log' },
+  { href: '/projects/', label: 'Projects' },
+  { href: '/lists/', label: 'Lists' },
+  { href: '/now/', label: 'Now' },
+  { href: '/about/', label: 'About' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav aria-label="Primary" class="site-nav">
+  <ul>
+    {
+      links.map((link) => (
+        <li>
+          <a href={link.href} aria-current={currentPath.startsWith(link.href) ? 'page' : undefined}>
+            {link.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .site-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-nav a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: 0.94rem;
+  }
+
+  .site-nav a:hover,
+  .site-nav a[aria-current='page'] {
+    color: var(--color-accent);
+  }
+</style>

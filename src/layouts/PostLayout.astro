@@ -1,0 +1,87 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import TagList from '../components/TagList.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import MermaidLoader from '../components/MermaidLoader.astro';
+import ScrollProgress from '../components/ScrollProgress.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
+import PrevNextNav from '../components/PrevNextNav.astro';
+import EditOnGitHub from '../components/EditOnGitHub.astro';
+import LastUpdated from '../components/LastUpdated.astro';
+import { formatDate } from '../lib/date';
+import type { Tag } from '../data/tags';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  id: string;
+  title: string;
+  description?: string;
+  date: Date;
+  updated?: Date;
+  tags: Tag[];
+  minutesRead?: number;
+  hasMermaid?: boolean;
+  headings: Heading[];
+  prev?: { id: string; data: { title: string } } | null;
+  next?: { id: string; data: { title: string } } | null;
+}
+
+const { id, title, description, date, updated, tags, minutesRead, hasMermaid, headings, prev, next } = Astro.props;
+const filePath = `content/blog/${id}.md`;
+---
+
+<BaseLayout title={title} description={description}>
+  <ScrollProgress />
+  <article class="prose">
+    <header class="post-header">
+      <h1>{title}</h1>
+      <p class="post-meta">
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        {minutesRead && <span> &middot; {minutesRead} min read</span>}
+      </p>
+      <TagList tags={tags} />
+    </header>
+
+    <TableOfContents headings={headings} />
+
+    <div class="post-content">
+      <slot />
+    </div>
+
+    <footer class="post-footer">
+      <EditOnGitHub filePath={filePath} />
+      <LastUpdated filePath={filePath} fallback={updated ?? date} />
+    </footer>
+
+    <RelatedPosts tags={tags} excludeId={id} />
+    <PrevNextNav prev={prev} next={next} basePath="/blog/" />
+  </article>
+
+  <MermaidLoader hasMermaid={hasMermaid} />
+</BaseLayout>
+
+<style>
+  .post-header {
+    margin-bottom: 2rem;
+  }
+
+  .post-meta {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+
+  .post-footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+</style>

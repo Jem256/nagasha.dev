@@ -1,0 +1,22 @@
+---
+interface Props {
+  filePath: string;
+}
+
+const { filePath } = Astro.props;
+const REPO = 'Jem256/nagasha.dev';
+const editUrl = `https://github.com/${REPO}/edit/main/${filePath}`;
+---
+
+<a class="edit-on-github" href={editUrl}>Edit this page on GitHub</a>
+
+<style>
+  .edit-on-github {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  .edit-on-github:hover {
+    color: var(--color-accent);
+  }
+</style>

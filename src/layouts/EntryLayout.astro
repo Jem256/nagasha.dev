@@ -1,0 +1,84 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import TagList from '../components/TagList.astro';
+import MermaidLoader from '../components/MermaidLoader.astro';
+import EditOnGitHub from '../components/EditOnGitHub.astro';
+import { formatDate } from '../lib/date';
+import type { Tag } from '../data/tags';
+
+interface Props {
+  id: string;
+  collection: 'til' | 'worklog' | 'notes' | 'lists';
+  title: string;
+  description?: string;
+  date: Date;
+  tags: Tag[];
+  hasMermaid?: boolean;
+  project?: string;
+  links?: Array<{ label: string; url: string }>;
+}
+
+const { id, collection, title, description, date, tags, hasMermaid, project, links } = Astro.props;
+const filePath = `content/${collection}/${id}.md`;
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="prose entry">
+    <header class="entry-header">
+      <h1>{title}</h1>
+      <p class="entry-meta">
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        {project && <span class="entry-project"> &middot; {project}</span>}
+      </p>
+      <TagList tags={tags} />
+    </header>
+
+    <div class="entry-content">
+      <slot />
+    </div>
+
+    {
+      links && links.length > 0 && (
+        <ul class="entry-links">
+          {links.map((link) => (
+            <li>
+              <a href={link.url}>{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <footer class="entry-footer">
+      <EditOnGitHub filePath={filePath} />
+    </footer>
+  </article>
+
+  <MermaidLoader hasMermaid={hasMermaid} />
+</BaseLayout>
+
+<style>
+  .entry-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .entry-meta {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+
+  .entry-project {
+    text-transform: capitalize;
+  }
+
+  .entry-links {
+    margin-top: 1.5rem;
+    padding-left: 1.2rem;
+  }
+
+  .entry-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+</style>

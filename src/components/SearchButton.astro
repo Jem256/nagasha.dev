@@ -1,0 +1,41 @@
+---
+// Pagefind's component-UI assets (dist/pagefind/pagefind-component-ui.{js,css}) are generated
+// by the `postbuild` script (`pagefind --site dist`) and only exist after a real `astro build`.
+// Search is a no-op in `astro dev`, by design — see README.
+---
+
+<link href="/pagefind/pagefind-component-ui.css" rel="stylesheet" />
+<script src="/pagefind/pagefind-component-ui.js" type="module" is:inline></script>
+
+<pagefind-modal-trigger compact placeholder="Search" shortcut="mod+k" class="icon-link"></pagefind-modal-trigger>
+<pagefind-modal></pagefind-modal>
+
+<style is:global>
+  :root {
+    --pf-accent: var(--color-accent);
+    --pf-text: var(--color-text);
+    --pf-background: var(--color-bg);
+    --pf-border: var(--color-border);
+  }
+
+  :root[data-theme='dark'] {
+    --pf-theme: dark;
+  }
+
+  pagefind-modal-trigger {
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  // "/" is a common quick-search convention alongside Pagefind's built-in mod+k binding.
+  document.addEventListener('keydown', (e) => {
+    const isSlash = e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName ?? '');
+    if (!isSlash) return;
+    const trigger = document.querySelector('pagefind-modal-trigger button');
+    if (trigger instanceof HTMLElement) {
+      e.preventDefault();
+      trigger.click();
+    }
+  });
+</script>
