@@ -1,0 +1,78 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate } from '../../lib/date';
+import { byDateDesc, published } from '../../lib/sort';
+
+const entries = byDateDesc(published(await getCollection('worklog')));
+const PROJECT_LABELS: Record<string, string> = { polar: 'Polar', lnd: 'LND', bitdevs: 'BitDevs', btrust: 'Btrust' };
+---
+
+<BaseLayout title="Work Log" description="Chronological, dated record of open source contributions and community work.">
+  <div class="prose">
+    <h1>Work Log</h1>
+    <p class="section-intro">
+      A chronological record of what I actually did — PRs opened, sessions led, reports filed. This is the
+      section that makes the work verifiable.
+    </p>
+
+    <ul class="worklog-list">
+      {
+        entries.map((entry) => (
+          <li>
+            <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</time>
+            <div>
+              <a href={`/worklog/${entry.id}/`}>{entry.data.title}</a>
+              {entry.data.project && <span class="worklog-project">{PROJECT_LABELS[entry.data.project]}</span>}
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .section-intro {
+    color: var(--color-text-muted);
+  }
+
+  .worklog-list {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+  }
+
+  .worklog-list li {
+    display: flex;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--color-border);
+    align-items: baseline;
+  }
+
+  .worklog-list time {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    min-width: 7rem;
+    flex-shrink: 0;
+  }
+
+  .worklog-list a {
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .worklog-list a:hover {
+    color: var(--color-accent);
+  }
+
+  .worklog-project {
+    margin-left: 0.6rem;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 0.05rem 0.55rem;
+  }
+</style>

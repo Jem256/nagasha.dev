@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { TAGS, TAG_LABELS } from '../../data/tags';
+---
+
+<BaseLayout title="Tags" description="Browse all content by tag.">
+  <div class="prose">
+    <h1>Tags</h1>
+    <ul class="tag-index">
+      {
+        TAGS.map((tag) => (
+          <li>
+            <a href={`/tags/${tag}/`}>{TAG_LABELS[tag]}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .tag-index {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+  }
+
+  .tag-index a {
+    display: inline-block;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 0.3rem 0.9rem;
+    text-decoration: none;
+  }
+
+  .tag-index a:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+</style>

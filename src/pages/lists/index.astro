@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { byDateDesc, published } from '../../lib/sort';
+
+const entries = byDateDesc(published(await getCollection('lists')));
+---
+
+<BaseLayout title="Lists" description="Curated, wiki-like lists — Lightning resources, Bitcoin books, dev setup, and more.">
+  <div class="prose">
+    <h1>Lists</h1>
+    <p class="section-intro">Curated, living lists — updated as I find things worth keeping.</p>
+
+    <ul class="post-list">
+      {
+        entries.map((entry) => (
+          <li>
+            <a class="post-title" href={`/lists/${entry.id}/`}>{entry.data.title}</a>
+            {entry.data.description && <p class="post-description">{entry.data.description}</p>}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .section-intro {
+    color: var(--color-text-muted);
+  }
+  .post-list {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+  }
+  .post-list li {
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .post-title {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+  .post-title:hover {
+    color: var(--color-accent);
+  }
+  .post-description {
+    margin: 0.4rem 0 0;
+    color: var(--color-text-muted);
+  }
+</style>

@@ -1,0 +1,165 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GitHubPinnedRepos from '../components/GitHubPinnedRepos.astro';
+import { formatDate } from '../lib/date';
+import { byDateDesc, published } from '../lib/sort';
+
+const recentPosts = byDateDesc(published(await getCollection('blog'))).slice(0, 4);
+const recentTils = byDateDesc(published(await getCollection('til'))).slice(0, 5);
+const recentWorklog = byDateDesc(published(await getCollection('worklog'))).slice(0, 5);
+
+const nowEntry = await getEntry('pages', 'now');
+const NowContent = nowEntry ? (await render(nowEntry)).Content : null;
+---
+
+<BaseLayout title="Jemimah — Bitcoin & Lightning open source">
+  <div class="prose home">
+    <section class="intro">
+      <p>
+        I'm Jemimah, an engineer working on Bitcoin and Lightning open source. I contribute to
+        <a href="/projects/polar/">Polar</a> under a Btrust grant, organize
+        <a href="/projects/bitdevs-kampala/">BitDevs Kampala</a>, and document what I'm learning here.
+      </p>
+    </section>
+
+    <section class="home-section">
+      <div class="home-section-header">
+        <h2>Recent posts</h2>
+        <a href="/blog/">All posts &rarr;</a>
+      </div>
+      <ul class="home-list">
+        {
+          recentPosts.map((post) => (
+            <li>
+              <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+              <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="home-section">
+      <div class="home-section-header">
+        <h2>Today I learned</h2>
+        <a href="/til/">All TILs &rarr;</a>
+      </div>
+      <ul class="home-list">
+        {
+          recentTils.map((til) => (
+            <li>
+              <a href={`/til/${til.id}/`}>{til.data.title}</a>
+              <time datetime={til.data.date.toISOString()}>{formatDate(til.data.date)}</time>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="home-section">
+      <div class="home-section-header">
+        <h2>Work log</h2>
+        <a href="/worklog/">Full log &rarr;</a>
+      </div>
+      <ul class="home-list">
+        {
+          recentWorklog.map((entry) => (
+            <li>
+              <a href={`/worklog/${entry.id}/`}>{entry.data.title}</a>
+              <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</time>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    {
+      NowContent && (
+        <section class="home-section now-snapshot">
+          <div class="home-section-header">
+            <h2>Right now</h2>
+            <a href="/now/">Full /now &rarr;</a>
+          </div>
+          <div class="now-content">
+            <NowContent />
+          </div>
+        </section>
+      )
+    }
+
+    <section class="home-section">
+      <GitHubPinnedRepos />
+    </section>
+
+    <section class="home-section home-links">
+      <a href="https://github.com/Jem256">GitHub</a>
+      <a href="/rss.xml">RSS</a>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    font-size: 1.15rem;
+    margin: 1rem 0 3rem;
+  }
+
+  .home-section {
+    margin-bottom: 3rem;
+  }
+
+  .home-section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .home-section-header h2 {
+    font-size: 1.05rem;
+    margin: 0;
+  }
+
+  .home-section-header a {
+    font-size: 0.85rem;
+    text-decoration: none;
+  }
+
+  .home-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .home-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .home-list a {
+    text-decoration: none;
+  }
+
+  .home-list a:hover {
+    color: var(--color-accent);
+  }
+
+  .home-list time {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  .now-content :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .home-links {
+    display: flex;
+    gap: 1.25rem;
+  }
+</style>

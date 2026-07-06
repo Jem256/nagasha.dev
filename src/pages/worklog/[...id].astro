@@ -1,0 +1,25 @@
+---
+import { getCollection, render } from 'astro:content';
+import EntryLayout from '../../layouts/EntryLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('worklog');
+  return entries.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content, remarkPluginFrontmatter } = await render(entry);
+---
+
+<EntryLayout
+  id={entry.id}
+  collection="worklog"
+  title={entry.data.title}
+  date={entry.data.date}
+  tags={entry.data.tags}
+  hasMermaid={remarkPluginFrontmatter.hasMermaid}
+  project={entry.data.project}
+  links={entry.data.links}
+>
+  <Content />
+</EntryLayout>

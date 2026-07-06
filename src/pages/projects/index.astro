@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const entries = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title));
+---
+
+<BaseLayout title="Projects" description="Evergreen summaries of the projects I work on, with links to PRs, repos, and milestones.">
+  <div class="prose">
+    <h1>Projects</h1>
+    <p class="section-intro">
+      Unlike the <a href="/worklog/">work log</a>, these are living summaries — my role, links, milestones, and
+      related writing, kept up to date rather than dated entries.
+    </p>
+
+    <ul class="project-list">
+      {
+        entries.map((entry) => (
+          <li>
+            <a class="project-title" href={`/projects/${entry.id}/`}>{entry.data.title}</a>
+            <span class:list={['project-status', `project-status-${entry.data.status}`]}>{entry.data.status}</span>
+            {entry.data.description && <p class="project-description">{entry.data.description}</p>}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .section-intro {
+    color: var(--color-text-muted);
+  }
+  .project-list {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+  }
+  .project-list li {
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .project-title {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+  .project-title:hover {
+    color: var(--color-accent);
+  }
+  .project-status {
+    margin-left: 0.6rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-text-muted);
+  }
+  .project-status-active {
+    color: var(--color-accent);
+  }
+  .project-description {
+    margin: 0.4rem 0 0;
+    color: var(--color-text-muted);
+  }
+</style>

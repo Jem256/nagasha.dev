@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TagList from '../../components/TagList.astro';
+import { formatDate } from '../../lib/date';
+import { byDateDesc, published } from '../../lib/sort';
+
+const entries = byDateDesc(published(await getCollection('notes')));
+---
+
+<BaseLayout title="Notes" description="Longer-running notes that aren't quite blog posts or TILs.">
+  <div class="prose">
+    <h1>Notes</h1>
+    <p class="section-intro">Working notes — less polished than blog posts, longer-lived than TILs.</p>
+
+    <ul class="post-list">
+      {
+        entries.map((entry) => (
+          <li>
+            <a class="post-title" href={`/notes/${entry.id}/`}>{entry.data.title}</a>
+            <p class="post-meta"><time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</time></p>
+            {entry.data.description && <p class="post-description">{entry.data.description}</p>}
+            <TagList tags={entry.data.tags} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .section-intro {
+    color: var(--color-text-muted);
+  }
+  .post-list {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+  }
+  .post-list li {
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .post-title {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+  .post-title:hover {
+    color: var(--color-accent);
+  }
+  .post-meta {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    margin: 0.3rem 0 0.5rem;
+  }
+  .post-description {
+    margin: 0 0 0.5rem;
+  }
+</style>

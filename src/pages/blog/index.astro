@@ -1,0 +1,77 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TagList from '../../components/TagList.astro';
+import { formatDate } from '../../lib/date';
+import { byDateDesc, published } from '../../lib/sort';
+
+const posts = byDateDesc(published(await getCollection('blog')));
+const withReadingTime = await Promise.all(
+  posts.map(async (post) => {
+    const { remarkPluginFrontmatter } = await render(post);
+    return { post, minutesRead: remarkPluginFrontmatter.minutesRead as number | undefined };
+  }),
+);
+---
+
+<BaseLayout title="Blog" description="Long-form technical writing on Bitcoin, Lightning, and open source development.">
+  <div class="prose">
+    <h1>Blog</h1>
+    <p class="section-intro">Long-form writing on Bitcoin, Lightning, and the tools I build.</p>
+
+    <ul class="post-list">
+      {
+        withReadingTime.map(({ post, minutesRead }) => (
+          <li>
+            <a class="post-title" href={`/blog/${post.id}/`}>{post.data.title}</a>
+            <p class="post-meta">
+              <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+              {minutesRead && <span> &middot; {minutesRead} min read</span>}
+            </p>
+            {post.data.description && <p class="post-description">{post.data.description}</p>}
+            <TagList tags={post.data.tags} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .section-intro {
+    color: var(--color-text-muted);
+  }
+
+  .post-list {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+  }
+
+  .post-list li {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .post-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .post-title:hover {
+    color: var(--color-accent);
+  }
+
+  .post-meta {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    margin: 0.3rem 0 0.5rem;
+  }
+
+  .post-description {
+    margin: 0 0 0.5rem;
+  }
+</style>

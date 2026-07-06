@@ -1,0 +1,89 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { TAGS, TAG_LABELS, type Tag } from '../../data/tags';
+import { entryUrl, collectionLabel } from '../../lib/urls';
+import { formatDate } from '../../lib/date';
+import { published } from '../../lib/sort';
+import { TAGGABLE_COLLECTIONS } from '../../lib/collections';
+
+export async function getStaticPaths() {
+  return TAGS.map((tag) => ({ params: { tag } }));
+}
+
+const { tag } = Astro.params as { tag: Tag };
+
+const matches = (
+  await Promise.all(
+    TAGGABLE_COLLECTIONS.map(async (collection) => {
+      const entries = published(await getCollection(collection));
+      return entries
+        .filter((entry) => entry.data.tags?.includes(tag))
+        .map((entry) => ({ collection, entry }));
+    }),
+  )
+).flat();
+
+matches.sort((a, b) => +b.entry.data.date - +a.entry.data.date);
+
+const talks = (await getCollection('talks')).filter((entry) => entry.data.tags?.includes(tag));
+---
+
+<BaseLayout title={`Tag: ${TAG_LABELS[tag]}`} description={`Everything tagged ${TAG_LABELS[tag]}.`}>
+  <div class="prose">
+    <h1>Tag: {TAG_LABELS[tag]}</h1>
+
+    <ul class="tag-results">
+      {
+        matches.map(({ collection, entry }) => (
+          <li>
+            <span class="result-kind">{collectionLabel(collection)}</span>
+            <a href={entryUrl(collection, entry.id)}>{entry.data.title}</a>
+            <span class="result-date">{formatDate(entry.data.date)}</span>
+          </li>
+        ))
+      }
+      {
+        talks.map((entry) => (
+          <li>
+            <span class="result-kind">Talks &amp; Press</span>
+            <a href={entry.data.url}>{entry.data.title}</a>
+            <span class="result-date">{formatDate(entry.data.date)}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    {matches.length === 0 && talks.length === 0 && <p>Nothing tagged {TAG_LABELS[tag]} yet.</p>}
+  </div>
+</BaseLayout>
+
+<style>
+  .tag-results {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+  }
+
+  .tag-results li {
+    display: flex;
+    gap: 0.7rem;
+    align-items: baseline;
+    padding: 0.7rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .result-kind {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-text-muted);
+    min-width: 5rem;
+  }
+
+  .result-date {
+    margin-left: auto;
+    color: var(--color-text-muted);
+    font-size: 0.82rem;
+  }
+</style>
