@@ -1,6 +1,6 @@
 # nagasha.dev
 
-Jemimah's personal site — a public, linkable record of open source work on Bitcoin and Lightning. Built with [Astro](https://astro.build), content collections, and as few dependencies as the feature list allows.
+nagasha's personal site — a public, linkable record of open source work on Bitcoin and Lightning. Built with [Astro](https://astro.build), content collections, and as few dependencies as the feature list allows.
 
 Live at [nagasha.dev](https://nagasha.dev).
 

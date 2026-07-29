@@ -3,7 +3,7 @@ title: About
 updated: 2026-07-01
 ---
 
-I'm Jemimah — I build open source Bitcoin and Lightning tooling full-time, from Kampala, Uganda.
+I'm nagasha — I build open source Bitcoin and Lightning tooling full-time, from Kampala, Uganda.
 
 ## How I got here
 

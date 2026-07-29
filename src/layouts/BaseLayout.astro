@@ -14,15 +14,15 @@ interface Props {
 
 const { title, description, ogImage, jsonLd } = Astro.props;
 
-const siteName = 'Jemimah — Bitcoin & Lightning open source';
-const pageTitle = title === siteName ? title : `${title} · Jemimah`;
+const siteName = 'nagasha — Bitcoin & Lightning open source';
+const pageTitle = title === siteName ? title : `${title} · nagasha`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const resolvedOgImage = ogImage ? new URL(ogImage, Astro.site).toString() : new URL('/og-default.png', Astro.site).toString();
 
 const personJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: 'Jemimah',
+  name: 'nagasha',
   url: 'https://nagasha.dev',
   jobTitle: 'Open Source Bitcoin & Lightning Developer',
   sameAs: ['https://github.com/Jem256'],
@@ -38,7 +38,7 @@ const personJsonLd = {
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={canonicalURL} />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="alternate" type="application/rss+xml" title="Jemimah's blog" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="nagasha's blog" href="/rss.xml" />
     <link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml" />
 
     <meta property="og:type" content="website" />

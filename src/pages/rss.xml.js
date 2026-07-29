@@ -21,9 +21,9 @@ export async function GET(context) {
   );
 
   return rss({
-    title: "Jemimah's blog",
-    description: 'Bitcoin, Lightning, and open source, written in Kampala.',
-    site: context.site,
-    items,
+      title: "nagasha's blog",
+      description: 'Bitcoin, Lightning, and open source, written in Kampala.',
+      site: context.site,
+      items,
   });
 }
