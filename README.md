@@ -1,12 +1,14 @@
 # nagasha.dev
 
-nagasha's personal site — a public, linkable record of open source work on Bitcoin and Lightning. Built with [Astro](https://astro.build), content collections, and as few dependencies as the feature list allows.
+My personal site — Bitcoin & Lightning open source work, notes, and writing. Built with [Astro](https://astro.build), content collections, and as few dependencies as the feature list allows.
 
 Live at [nagasha.dev](https://nagasha.dev).
 
+This README is for me (or future-me) coming back to this repo after a break — setup, where things live, and how to change them.
+
 ## Philosophy
 
-Calm, minimal, fast. Everything lives in Git as markdown — no database, no CMS. Publishing a post means adding a file, not touching a component. See the project spec this repo was built from for the full rationale.
+Calm, minimal, fast. Everything lives in Git as markdown — no database, no CMS. Publishing a post means adding a file, not touching a component.
 
 ## Install
 
@@ -16,8 +18,6 @@ Requires Node.js 22+ (developed against Node 24).
 npm install
 npm run dev
 ```
-
-`npm run dev` (and `npm run build`) first run `scripts/fetch-pinned-repos.mjs`, which fetches your GitHub pinned repos for the homepage. It needs a `GITHUB_TOKEN` or `GH_PAT` environment variable to hit the GitHub API; without one (or if the network is unavailable), it falls back to the committed `public/data/pinned-repos.fallback.json` and the build still succeeds.
 
 Local search (Pagefind) only works after a full build — `astro dev` does not run the `postbuild` indexing step. This is expected; see [Known limitations](#known-limitations).
 
@@ -29,6 +29,8 @@ npm run preview  # serve the production build locally
 ```
 
 Deployment to GitHub Pages happens automatically via `.github/workflows/deploy.yml` on every push to `main`, using [`withastro/action`](https://github.com/withastro/action). The site is configured for the custom domain `nagasha.dev` (see `public/CNAME` and `site` in `astro.config.mjs`) with no `base` path, which means the same build output deploys unmodified to Cloudflare Pages, Netlify, or Vercel — just point any of them at this repo with build command `npm run build` and output directory `dist`.
+
+No secrets or API tokens are required to build or deploy.
 
 ## Authoring content
 
@@ -56,11 +58,11 @@ Canonical tags live in `src/data/tags.ts` — using a tag outside that list fail
 
 ```
 content/       All markdown content — the only thing you need to touch to publish
-public/        Static assets, CNAME, robots.txt, favicon, pinned-repos fallback
+public/        Static assets, CNAME, robots.txt, favicon
 scripts/       Build-time and scaffolding Node scripts (no framework dependency)
 src/
   content.config.ts   Content collection schemas
-  data/               Canonical tags, generated pinned-repos.json (gitignored)
+  data/               Canonical tags
   lib/                Small framework-free helper functions and remark plugins
   layouts/            Page-level layouts (Base, Post, Entry, Project)
   components/         .astro components
@@ -70,7 +72,8 @@ src/
 
 ## Customization
 
-- **Colors/fonts**: `src/styles/global.css` (CSS custom properties). Fonts are a system stack (no webfont requests at runtime).
+- **Colors/fonts**: `src/styles/global.css` (CSS custom properties, `--color-accent` is the one to touch for a quick reskin). Fonts are a system stack (no webfont requests at runtime).
+- **Favicon**: `public/favicon/` — currently my GitHub avatar; swap `favicon.png` and `apple-touch-icon.png` to change it.
 - **Nav links**: `src/components/Nav.astro`.
 - **Canonical tags**: `src/data/tags.ts`.
 - **Domain**: update `site` in `astro.config.mjs` and `public/CNAME`.
@@ -78,9 +81,4 @@ src/
 ## Known limitations
 
 - Pagefind search is a no-op in `astro dev` — its index only exists after `npm run build`.
-- The GitHub pinned-repos fetch requires a `GITHUB_TOKEN`/`GH_PAT` env var; without one it silently uses the static fallback file, which you should update by hand occasionally.
 - Sample content across every collection is clearly placeholder — PR numbers, issue links, and some URLs are marked as samples and should be replaced with real links before treating any entry as a verifiable claim.
-
-## License
-
-MIT — see `LICENSE`. Fork it, strip the sample content, and make it yours.
