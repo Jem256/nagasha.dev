@@ -14,7 +14,7 @@ BitDevs Kampala is a monthly, technical Bitcoin reading group — modeled on the
 
 ## My role
 
-I organize the sessions: picking reading material, finding presenters, and running the room. It's the main way I stay plugged into the wider East African Bitcoin developer community, and a regular source of material for [BitDevs-tagged work log entries](/worklog/).
+I organize the sessions: picking reading material, finding presenters, and running the room. It's the main way I stay plugged into the wider East African Bitcoin developer community.
 
 *Sample session archive — replace with real dates/links:*
 

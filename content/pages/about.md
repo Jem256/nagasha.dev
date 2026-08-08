@@ -23,6 +23,6 @@ I also organize **BitDevs Kampala**, a monthly technical Bitcoin reading group �
 - Grant: Btrust Builders program
 - Community: BitDevs Kampala, Btrust Builders
 
-I've spent time across East Africa for various Bitcoin meetups and hackathons (bitcoin++ Nairobi among them) — see [Talks & Press](/talks/) for specifics, and the [work log](/worklog/) for the day-to-day.
+I've spent time across East Africa for various Bitcoin meetups and hackathons (bitcoin++ Nairobi among them) — see [Talks & Press](/talks/) for specifics.
 
 If you want to get in touch, GitHub is the most reliable place to reach me.

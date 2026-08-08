@@ -1,5 +1,4 @@
 ---
-import { Font } from 'astro:assets';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CopyCodeButton from '../components/CopyCodeButton.astro';
@@ -47,10 +46,6 @@ const personJsonLd = {
     <meta property="og:image" content={resolvedOgImage} />
     <meta property="og:url" content={canonicalURL} />
     <meta name="twitter:card" content="summary_large_image" />
-
-    <Font cssVariable="--font-body" preload />
-    <Font cssVariable="--font-heading" preload />
-    <Font cssVariable="--font-mono" />
 
     <script is:inline>
       (function () {

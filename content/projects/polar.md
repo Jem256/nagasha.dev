@@ -22,5 +22,3 @@ I contribute under a **Btrust Starter Grant**, focused mostly on cross-platform 
 - Fixed Core Lightning unix-socket handling under Docker on Windows hosts (path/volume mapping issue).
 - Improved node lock/unlock UX and error messaging when a wallet is already unlocked elsewhere.
 - Documented seed phrase and channel backup export/import flow for new node types.
-
-See the [work log](/worklog/) for the day-to-day trail of PRs and issues tagged `polar`.

@@ -7,7 +7,7 @@ updated: 2026-07-01
 
 ## Working on
 
-- Polar: tracking down a CLN unix-socket compatibility issue that only reproduces inside Docker volumes on Windows hosts (see the [work log](/worklog/)).
+- Polar: tracking down a CLN unix-socket compatibility issue that only reproduces inside Docker volumes on Windows hosts.
 - Drafting the Q3 Btrust quarterly report for the grant program.
 - Slowly rewriting PRGuard's PR-readiness checks to use the GitHub GraphQL API instead of several REST calls.
 

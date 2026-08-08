@@ -13,8 +13,6 @@
         "preview": "astro preview",
         "check": "astro check",
         "new:blog": "node scripts/new-blog.mjs",
-        "new:til": "node scripts/new-til.mjs",
-        "new:worklog": "node scripts/new-worklog.mjs",
         "new:project": "node scripts/new-project.mjs"
     },
     "dependencies": {

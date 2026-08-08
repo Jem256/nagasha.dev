@@ -10,7 +10,7 @@ interface Props {
   collections?: TaggableCollection[];
 }
 
-const { tags, excludeId, collections = ['blog', 'til', 'worklog', 'notes', 'projects'] } = Astro.props;
+const { tags, excludeId, collections = ['blog', 'notes', 'projects'] } = Astro.props;
 const related = await getRelatedEntries(collections, tags, excludeId);
 ---
 

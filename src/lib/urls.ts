@@ -2,8 +2,6 @@ import type { TaggableCollection } from './collections';
 
 const LINKABLE_COLLECTIONS: Record<TaggableCollection, string> = {
   blog: '/blog/',
-  til: '/til/',
-  worklog: '/worklog/',
   notes: '/notes/',
   lists: '/lists/',
   projects: '/projects/',
@@ -11,8 +9,6 @@ const LINKABLE_COLLECTIONS: Record<TaggableCollection, string> = {
 
 const LABELS: Record<TaggableCollection, string> = {
   blog: 'Blog',
-  til: 'TIL',
-  worklog: 'Work Log',
   notes: 'Notes',
   lists: 'List',
   projects: 'Project',

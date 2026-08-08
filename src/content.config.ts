@@ -21,19 +21,6 @@ const blog = defineCollection({
   }),
 });
 
-const til = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './content/til' }),
-  schema: baseSchema.omit({ description: true, updated: true }),
-});
-
-const worklog = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './content/worklog' }),
-  schema: baseSchema.extend({
-    project: z.enum(['polar', 'lnd', 'bitdevs', 'btrust']).optional(),
-    links: z.array(z.object({ label: z.string(), url: z.string().url() })).default([]),
-  }),
-});
-
 const notes = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './content/notes' }),
   schema: baseSchema,
@@ -85,4 +72,4 @@ const pages = defineCollection({
   }),
 });
 
-export const collections = { blog, til, worklog, notes, lists, projects, talks, pages };
+export const collections = { blog, notes, lists, projects, talks, pages };

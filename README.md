@@ -37,8 +37,6 @@ Everything under `content/` is markdown (or MDX where components are useful) wit
 | Command | Creates |
 |---|---|
 | `npm run new:blog -- "Post title"` | `content/blog/post-title.md` |
-| `npm run new:til -- "Short title"` | `content/til/short-title.md` |
-| `npm run new:worklog -- "Title" --project=polar` | `content/worklog/title.md` (`--project` is optional: `polar`, `lnd`, `bitdevs`, `btrust`) |
 | `npm run new:project -- "Project name"` | `content/projects/project-name.md` |
 
 Every scaffolded file starts with `draft: true` and today's date — flip `draft` to `false` (or remove it) when it's ready to publish. `notes/`, `lists/`, and `talks/` don't have scaffolding scripts since they're edited less often; copy an existing file in that directory as a starting point.
@@ -48,11 +46,9 @@ Canonical tags live in `src/data/tags.ts` — using a tag outside that list fail
 ### Content collections
 
 - `content/blog/` — long-form posts. Supports Mermaid diagrams (loaded client-side only on pages that use one), KaTeX math, footnotes, syntax highlighting, reading time, and a table of contents, all automatic.
-- `content/til/` — quick, dated notes.
-- `content/worklog/` — chronological, dated entries, optionally tagged with a `project` and linking out to PRs/issues via `links`.
 - `content/notes/` — longer-running working notes.
 - `content/lists/` — curated, wiki-like lists (`items` array in frontmatter).
-- `content/projects/` — evergreen project pages; automatically surface related posts/TILs/worklog entries by shared tag.
+- `content/projects/` — evergreen project pages; automatically surface related posts/notes by shared tag.
 - `content/talks/` — talks, interviews, podcasts, guest posts, and press mentions (`type` field distinguishes them). Index-only, no per-entry pages — link out to the source.
 - `content/pages/` — `about.md` and `now.md`, the two standalone pages.
 
@@ -74,7 +70,7 @@ src/
 
 ## Customization
 
-- **Colors/fonts**: `src/styles/global.css` (CSS custom properties) and the `fonts` array in `astro.config.mjs` (self-hosted via Astro's built-in Fonts API — no Google Fonts requests at runtime).
+- **Colors/fonts**: `src/styles/global.css` (CSS custom properties). Fonts are a system stack (no webfont requests at runtime).
 - **Nav links**: `src/components/Nav.astro`.
 - **Canonical tags**: `src/data/tags.ts`.
 - **Domain**: update `site` in `astro.config.mjs` and `public/CNAME`.
