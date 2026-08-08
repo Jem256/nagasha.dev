@@ -6,10 +6,10 @@
   --color-text: #201d18;
   --color-text-muted: #6f6759;
   --color-border: #ddd5c7;
-  --color-accent: #9c6520;
-  --color-accent-hover: #b5762a;
+  --color-accent: #b1465f;
+  --color-accent-hover: #c65c76;
   --color-code-bg: #efe9de;
-  --color-selection: color-mix(in oklab, #9c6520 30%, transparent);
+  --color-selection: color-mix(in oklab, #b1465f 30%, transparent);
 
   --font-body: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Palatino, Charter, 'Source Serif Pro', 'Noto Serif', Georgia, serif;
   --font-heading: var(--font-body);
@@ -42,10 +42,10 @@
     --color-text: #ece7df;
     --color-text-muted: #9a938a;
     --color-border: #33302b;
-    --color-accent: #d4a15a;
-    --color-accent-hover: #e0b374;
+    --color-accent: #e08aa0;
+    --color-accent-hover: #e9a1b4;
     --color-code-bg: #1c1a17;
-    --color-selection: color-mix(in oklab, #d4a15a 30%, transparent);
+    --color-selection: color-mix(in oklab, #e08aa0 30%, transparent);
     color-scheme: dark;
   }
 }
