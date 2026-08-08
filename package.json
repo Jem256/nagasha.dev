@@ -5,9 +5,7 @@
     "type": "module",
     "private": true,
     "scripts": {
-        "predev": "node scripts/fetch-pinned-repos.mjs",
         "dev": "astro dev",
-        "prebuild": "node scripts/fetch-pinned-repos.mjs",
         "build": "astro build",
         "postbuild": "pagefind --site dist",
         "preview": "astro preview",

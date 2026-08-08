@@ -1,7 +1,6 @@
 ---
 import { getCollection, getEntry, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import GitHubPinnedRepos from '../components/GitHubPinnedRepos.astro';
 import { formatDate } from '../lib/date';
 import { byDateDesc, published } from '../lib/sort';
 
@@ -48,10 +47,6 @@ const NowContent = nowEntry ? (await render(nowEntry)).Content : null;
         </section>
       )
     }
-
-    <section class="home-section">
-      <GitHubPinnedRepos />
-    </section>
 
     <section class="home-section home-links">
       <a href="https://github.com/Jem256">GitHub</a>
