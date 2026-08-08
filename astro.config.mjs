@@ -1,4 +1,4 @@
-import { defineConfig, fontProviders } from 'astro/config';
+import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { unified } from '@astrojs/markdown-remark';
@@ -45,9 +45,4 @@ export default defineConfig({
     },
   },
 
-  fonts: [
-    { provider: fontProviders.fontsource(), name: 'Inter', cssVariable: '--font-body' },
-    { provider: fontProviders.fontsource(), name: 'IBM Plex Sans', cssVariable: '--font-heading' },
-    { provider: fontProviders.fontsource(), name: 'JetBrains Mono', cssVariable: '--font-mono' },
-  ],
 });

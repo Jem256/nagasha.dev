@@ -28,16 +28,19 @@ const currentPath = Astro.url.pathname;
   .site-nav ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.1rem;
+    align-items: baseline;
+    gap: 1.4rem;
     list-style: none;
     margin: 0;
     padding: 0;
+    text-transform: uppercase;
+    letter-spacing: var(--label-tracking);
   }
 
   .site-nav a {
     color: var(--color-text-muted);
     text-decoration: none;
-    font-size: 0.94rem;
+    font-size: 0.8rem;
   }
 
   .site-nav a:hover,
