@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Personal site of nagasha Nagasha — Bitcoin & Lightning open source developer.",
     "type": "module",
-    "license": "MIT",
+    "private": true,
     "scripts": {
         "predev": "node scripts/fetch-pinned-repos.mjs",
         "dev": "astro dev",
