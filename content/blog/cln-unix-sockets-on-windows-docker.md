@@ -4,6 +4,7 @@ description: Why CLN's RPC socket silently breaks inside Docker Desktop on Windo
 date: 2026-03-12
 tags: [polar, cln, docker, linux]
 featured: true
+draft: true
 ---
 
 Core Lightning (CLN) talks to `lightning-cli` over a unix domain socket at `lightning-rpc`, sitting inside its data directory. That's an unremarkable design choice on Linux and macOS. On Windows, it's where things get interesting.

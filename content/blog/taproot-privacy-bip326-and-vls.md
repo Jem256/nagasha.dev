@@ -3,6 +3,7 @@ title: Taproot privacy, BIP326, and why signing policy matters more than the cur
 description: Notes on BIP326 input privacy, Policy-Based Signing (VLS), and what actually leaks when a wallet signs a Taproot input.
 date: 2026-01-22
 tags: [bitcoin, lightning, ldk, career]
+draft: true
 ---
 
 Most explanations of Taproot privacy stop at "it makes multisig look like single-sig on-chain." True, but it undersells where the remaining leaks live once you get into Lightning-specific signing.

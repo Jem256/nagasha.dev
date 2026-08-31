@@ -4,6 +4,7 @@ description: What actually transferred from surveying sites in Kampala to review
 date: 2024-09-14
 tags: [career, bitcoin, bitdevs]
 featured: true
+draft: true
 ---
 
 I spent the first part of my career as a civil engineer, working with the Kampala Capital City Authority. If you'd told me then that I'd end up reviewing Lightning Network pull requests for a living, I'd have assumed you meant it as a joke about how different the two fields are. They're less different than I expected — and more different than "just learn to code" advice usually accounts for.
