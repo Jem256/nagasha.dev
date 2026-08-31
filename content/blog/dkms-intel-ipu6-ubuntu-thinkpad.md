@@ -3,6 +3,7 @@ title: DKMS, kernel upgrades, and the Intel IPU6 camera on my ThinkPad
 description: What actually breaks when Ubuntu upgrades the kernel out from under an out-of-tree camera driver, and how to stop dreading it.
 date: 2025-06-02
 tags: [linux, career]
+draft: true
 ---
 
 Newer ThinkPads use Intel's IPU6 image processing unit for the built-in camera instead of a plain UVC webcam, which means the camera doesn't work out of the box on Ubuntu without an out-of-tree kernel module — and every kernel upgrade is an opportunity for that module to stop building.

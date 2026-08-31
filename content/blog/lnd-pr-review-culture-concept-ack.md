@@ -3,6 +3,7 @@ title: "Concept ACK, tACK, and how LND's review culture actually works"
 description: A field guide to the review vocabulary LND (and Bitcoin Core) use, and where good-first-issues fit into it.
 date: 2025-11-04
 tags: [lnd, bitcoin, career]
+draft: true
 ---
 
 The first time I saw "Concept ACK" on an LND pull request, I assumed it meant approval. It doesn't — or rather, it means a much narrower kind of approval than the green checkmark implies, and figuring out the difference took me longer than it should have.
