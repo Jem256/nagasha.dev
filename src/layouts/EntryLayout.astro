@@ -2,7 +2,6 @@
 import BaseLayout from './BaseLayout.astro';
 import TagList from '../components/TagList.astro';
 import MermaidLoader from '../components/MermaidLoader.astro';
-import EditOnGitHub from '../components/EditOnGitHub.astro';
 import { formatDate } from '../lib/date';
 import type { Tag } from '../data/tags';
 
@@ -48,10 +47,7 @@ const filePath = `content/${collection}/${id}.md`;
         </ul>
       )
     }
-
-    <footer class="entry-footer">
-      <EditOnGitHub filePath={filePath} />
-    </footer>
+  
   </article>
 
   <MermaidLoader hasMermaid={hasMermaid} />

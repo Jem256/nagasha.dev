@@ -2,7 +2,6 @@
 import BaseLayout from './BaseLayout.astro';
 import TagList from '../components/TagList.astro';
 import RelatedPosts from '../components/RelatedPosts.astro';
-import EditOnGitHub from '../components/EditOnGitHub.astro';
 import type { Tag } from '../data/tags';
 
 interface Props {
@@ -38,10 +37,6 @@ const filePath = `content/projects/${id}.md`;
     <div class="project-content">
       <slot />
     </div>
-
-    <footer class="project-footer">
-      <EditOnGitHub filePath={filePath} />
-    </footer>
 
     <RelatedPosts tags={tags} excludeId={id} collections={['blog']} />
   </article>
