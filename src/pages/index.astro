@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { formatDate } from '../lib/date';
 import { byDateDesc, published } from '../lib/sort';
 
-const recentPosts = byDateDesc(published(await getCollection('blog'))).slice(0, 6);
+const recentPosts = byDateDesc(published(await getCollection('blog'))).slice(0, 4);
 
 const nowEntry = await getEntry('pages', 'now');
 const NowContent = nowEntry ? (await render(nowEntry)).Content : null;
@@ -17,8 +17,8 @@ const NowContent = nowEntry ? (await render(nowEntry)).Content : null;
       <div class="hero-text">
         <p>
           I'm nagasha, an engineer working on Bitcoin and Lightning open source. I contribute to{' '}
-          <a href="/projects/polar/">Polar</a> under a Btrust grant, organize{' '}
-          <a href="/projects/bitdevs-kampala/">BitDevs Kampala</a>, and document what I'm learning here.
+          <a href="https://github.com/jamaljsr/polar" target="_blank" rel="noopener noreferrer">Polar</a> under a  <a href="https://btrust.tech/" target="_blank" rel="noopener noreferrer">Btrust</a> grant, organize{' '}
+          <a href="https://www.bitdevskla.org/" target="_blank" rel="noopener noreferrer">BitDevs Kampala</a>, and document what I'm learning here.
         </p>
       </div>
     </section>
@@ -48,10 +48,10 @@ const NowContent = nowEntry ? (await render(nowEntry)).Content : null;
       )
     }
 
-    <section class="home-section home-links">
+    {/* <section class="home-section home-links">
       <a href="https://github.com/Jem256">GitHub</a>
       <a href="/rss.xml">RSS</a>
-    </section>
+    </section> */}
   </div>
 </BaseLayout>
 
