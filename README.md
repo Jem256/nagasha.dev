@@ -81,4 +81,4 @@ src/
 ## Known limitations
 
 - Pagefind search is a no-op in `astro dev` — its index only exists after `npm run build`.
-- Sample content across every collection is clearly placeholder — PR numbers, issue links, and some URLs are marked as samples and should be replaced with real links before treating any entry as a verifiable claim.
+- Sample content across every collection is clearly placeholder 
