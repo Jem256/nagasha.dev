@@ -1,31 +1,35 @@
 ---
 title: Now
-updated: 2026-07-01
+updated: 2026-09-10
 ---
 
-*What I'm currently doing, roughly in order of how much time it takes. Last updated 2026-07-01 — inspired by [nownownow.com](https://nownownow.com/about).*
+*What I'm currently doing — inspired by [nownownow.com](https://nownownow.com/about).*
 
 ## Working on
 
-- Polar: tracking down a CLN unix-socket compatibility issue that only reproduces inside Docker volumes on Windows hosts.
-- Drafting the Q3 Btrust quarterly report for the grant program.
-- Slowly rewriting PRGuard's PR-readiness checks to use the GitHub GraphQL API instead of several REST calls.
+I'm working full-time on Bitcoin open source.
+
+Most of my time goes into [Polar](https://github.com/jamaljsr/polar), a desktop application for spinning up local Bitcoin and Lightning Network environments. My current focus areas are:
+
+- **Core Lightning on Windows:** improving the reliability of CLN nodes on Windows, particularly around Docker, filesystem differences, and the platform-specific issues that make local development harder.
+- **Node locking and unlocking:** improving how Polar handles LND wallet state, so node lifecycle actions behave predictably and accurately reflect the underlying node state.
+- **Seed phrases and channel backups:** making recovery flows easier to exercise locally, so developers can test wallet restoration and channel recovery safely on regtest.
 
 ## Reading / learning
 
-- Working through BOLT12 offers in detail ahead of a BitDevs Kampala session.
-- BIP326 (Taproot input privacy) — trying to fully understand the signature-aggregation implications for wallet implementers.
-- *Mastering the Lightning Network* — a second pass, this time focused on the routing chapters.
+**Bitcoin**
+
+- The [Service Discovery (SeD) Protocol](https://github.com/OpenBitcoinAfrica/ServiceDiscoveryProtocol/pull/3) draft from Open Bitcoin Africa. It's a Nostr-based spec that lets Bitcoin financial services advertise what they offer in each region and build reputation through attestations, without touching settlement itself.
+- Going deeper into Lightning implementations LND, Core Lightning and Eclair
+- Following Bitcoin Core PRs and softfork proposals, and learning how activation actually works in practice
+
+**Books**
+
+- [*Where Rivers Go to Die*](https://www.goodreads.com/book/show/60657552-where-rivers-go-to-die) by Dilman Dila
+- [*I Who Have Never Known Men*](https://www.goodreads.com/book/show/11996.I_Who_Have_Never_Known_Men) by Jacqueline Harpman
 
 ## BitDevs Kampala
 
-Planning the next session on onion messaging in LDK Node. Usually 30+ people show up; if you're in Kampala, it's open.
+I organise [BitDevs Kampala](https://www.bitdevskla.org/), a monthly Socratic-style reading group where we work through recent Bitcoin and Lightning technical developments: mailing list posts, BIPs, notable PRs, and research.
 
-## Hardware / setup
-
-- ThinkPad X1, Ubuntu, occasionally rebuilding DKMS modules after kernel upgrades.
-- Two external monitors, one keyboard I'm too attached to.
-
-## Not doing right now
-
-- Not taking on new client/contract work — grant-funded open source is the full-time focus.
+Going to the very first meetup is what pulled me into Bitcoin open source full-time, so keeping it going matters a lot to me.
