@@ -1,28 +1,27 @@
 ---
 title: About
-updated: 2026-07-01
 ---
 
-I'm nagasha — I build open source Bitcoin and Lightning tooling full-time, from Kampala, Uganda.
+Hi, I'm Jemimah Nagasha. I'm a Bitcoin open-source developer based in Kampala, Uganda.
+
+## What I do
+
+I work full-time on Bitcoin and Lightning open source, supported by a [Btrust](https://btrust.tech) Starter Grant. My main project is [Polar](https://github.com/jamaljsr/polar), a desktop app that lets developers spin up local Lightning Network environments for building and testing. 
+
+ More broadly, I'm interested in the tooling that makes Bitcoin easier to build on.
 
 ## How I got here
 
-I trained as a civil engineer and worked at the Kampala Capital City Authority before moving into software. I taught myself frontend development in the evenings — HTML, CSS, then JavaScript, then whatever framework was next — and eventually found my way into Bitcoin open source through local meetups and reading-group discussions. The shift from concrete and site surveys to git and code review wasn't as strange as it sounds: both disciplines reward the same instinct — check your assumptions, write things down, and make your work inspectable by someone else.
+I didn't start out in software. My background is in civil engineering and I worked in that field before finding my way to Bitcoin.
 
-I write about that transition occasionally under the `career` tag, if you're making a similar jump.
+The turning point was attending the first BitDevs Kampala meetup. Reading and discussing protocol developments with other developers made me want to contribute, not just follow along. From there I went through the [Btrust Builders Program](https://btrust.tech), which gave me the grounding and the community to move into sodtware development and Bitcoin open source full-time. If you're curious, you can read about it [here](https://blog.btrust.tech/how-curiosity-led-me-from-civil-engineering-to-bitcoin-open-source-contribution/).
 
-## What I work on
+## Outside of code
 
-I contribute to [Polar](https://github.com/jamaljsr/polar), a local development environment for Bitcoin and Lightning nodes, under a **Btrust Starter Grant**. Polar lets developers spin up LND, Core Lightning, and Eclair nodes on their laptop in a few clicks — no testnet faucets, no waiting on block confirmations. Most of my work log entries trace back to it.
+I love to read. You can see what's on my nightstand on my [Now](/now) page.
 
-I also organize **BitDevs Kampala**, a monthly technical Bitcoin reading group — usually 30+ regulars — where we work through BIPs, mailing list threads, and whatever's contentious in Bitcoin Core or Lightning that month.
+<!-- TODO: anything else you want people to know — hobbies, what you're like to work with, etc. -->
 
-## Elsewhere
+## Get in touch
 
-- Code: [github.com/Jem256](https://github.com/Jem256)
-- Grant: Btrust Builders program
-- Community: BitDevs Kampala, Btrust Builders
-
-I've spent time across East Africa for various Bitcoin meetups and hackathons (bitcoin++ Nairobi among them) — see [Talks & Press](/talks/) for specifics.
-
-If you want to get in touch, GitHub is the most reliable place to reach me.
+X: [nagasha_](https://twitter.com/nagasha_) | GitHub: [@Jem256](https://github.com/Jem256) | LinkedIn: [Jemimah Nagasha](https://www.linkedin.com/in/jemimah-nagasha-99b256190/)
