@@ -11,19 +11,60 @@
 <pagefind-modal></pagefind-modal>
 
 <style is:global>
+  /*
+   * Map Pagefind's own tokens onto this site's tokens. These reference
+   * --color-* custom properties directly (rather than gating on Pagefind's
+   * own [data-pf-theme] attribute, which nothing on this site ever sets),
+   * so dark mode falls out for free since --color-* already reacts to
+   * :root[data-theme='dark'] in global.css.
+   */
   :root {
-    --pf-accent: var(--color-accent);
     --pf-text: var(--color-text);
+    --pf-text-secondary: var(--color-text-muted);
+    --pf-text-muted: var(--color-text-muted);
     --pf-background: var(--color-bg);
     --pf-border: var(--color-border);
-  }
-
-  :root[data-theme='dark'] {
-    --pf-theme: dark;
+    --pf-border-focus: var(--color-accent);
+    --pf-hover: var(--color-bg-offset);
+    --pf-mark: var(--color-accent);
+    --pf-skeleton: var(--color-bg-offset);
+    --pf-skeleton-shine: var(--color-border);
+    --pf-outline-focus: var(--color-accent);
+    --pf-font: var(--font-body);
+    --pf-border-radius: var(--radius);
+    --pf-shadow-sm: none;
+    --pf-shadow-md: none;
+    --pf-shadow-lg: none;
   }
 
   pagefind-modal-trigger {
     cursor: pointer;
+  }
+
+  /*
+   * Pagefind's trigger renders as a bordered, padded input-lookalike button
+   * (see .pf-trigger-btn upstream). The header's other icons (RSS, GitHub)
+   * are bare SVGs with no box, so strip the chrome down to match — the
+   * :is(*, #\#) prefixes mirror Pagefind's own specificity trick so these
+   * rules actually win.
+   */
+  pagefind-modal-trigger.icon-link :is(*, #\#):is(*, #\#):is(*, #\#) .pf-trigger-btn {
+    height: auto;
+    width: auto;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+  }
+
+  pagefind-modal-trigger.icon-link :is(*, #\#):is(*, #\#):is(*, #\#) .pf-trigger-btn:hover {
+    color: var(--color-accent);
+  }
+
+  pagefind-modal-trigger.icon-link :is(*, #\#):is(*, #\#):is(*, #\#) .pf-trigger-icon {
+    width: 18px;
+    height: 18px;
+    background: currentColor;
   }
 </style>
 
