@@ -28,9 +28,11 @@ interface Props {
   headings: Heading[];
   prev?: { id: string; data: { title: string } } | null;
   next?: { id: string; data: { title: string } } | null;
+  canonicalUrl?: string;
 }
 
-const { id, title, description, date, updated, tags, minutesRead, hasMermaid, headings, prev, next } = Astro.props;
+const { id, title, description, date, updated, tags, minutesRead, hasMermaid, headings, prev, next, canonicalUrl } =
+  Astro.props;
 const filePath = `content/blog/${id}.md`;
 ---
 
@@ -43,6 +45,13 @@ const filePath = `content/blog/${id}.md`;
         <time datetime={date.toISOString()}>{formatDate(date)}</time>
         {minutesRead && <span> &middot; {minutesRead} min read</span>}
       </p>
+      {
+        canonicalUrl && (
+          <p class="post-meta canonical-note">
+            Originally published on <a href={canonicalUrl}>Medium</a>
+          </p>
+        )
+      }
       <TagList tags={tags} />
     </header>
 

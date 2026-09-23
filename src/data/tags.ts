@@ -1,5 +1,6 @@
 export const TAGS = [
     'bitcoin',
+    'taproot',
     'lightning',
     'polar',
     'lnd',
@@ -19,6 +20,7 @@ export type Tag = (typeof TAGS)[number];
 
 export const TAG_LABELS: Record<Tag, string> = {
     bitcoin: 'Bitcoin',
+    taproot: 'Taproot',
     lightning: 'Lightning',
     polar: 'Polar',
     lnd: 'LND',

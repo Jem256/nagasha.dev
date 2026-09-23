@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
 
-function slugify(title) {
+export function slugify(title) {
   return title
     .toLowerCase()
     .trim()
@@ -20,7 +20,7 @@ function yamlString(value) {
   return `"${String(value).replace(/"/g, '\\"')}"`;
 }
 
-function toFrontmatter(fields) {
+export function toFrontmatter(fields) {
   const lines = ['---'];
   for (const [key, value] of Object.entries(fields)) {
     if (Array.isArray(value)) {

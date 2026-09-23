@@ -18,6 +18,7 @@ const blog = defineCollection({
   schema: baseSchema.extend({
     featured: z.boolean().default(false),
     cover: z.string().optional(),
+    canonicalUrl: z.string().url().optional(),
   }),
 });
 

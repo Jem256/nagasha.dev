@@ -27,6 +27,7 @@ const { Content, headings, remarkPluginFrontmatter } = await render(entry);
   date={entry.data.date}
   updated={entry.data.updated}
   tags={entry.data.tags}
+  canonicalUrl={entry.data.canonicalUrl}
   minutesRead={remarkPluginFrontmatter.minutesRead}
   hasMermaid={remarkPluginFrontmatter.hasMermaid}
   headings={headings}
