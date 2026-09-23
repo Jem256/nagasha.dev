@@ -1,6 +1,6 @@
 ---
 title: Now
-updated: 2026-09-10
+updated: 2026-09-23
 ---
 
 *What I'm currently doing — inspired by [nownownow.com](https://nownownow.com/about).*
@@ -25,8 +25,8 @@ Most of my time goes into [Polar](https://github.com/jamaljsr/polar), a desktop 
 
 **Books**
 
-- [*Where Rivers Go to Die*](https://www.goodreads.com/book/show/60657552-where-rivers-go-to-die) by Dilman Dila
-- [*I Who Have Never Known Men*](https://www.goodreads.com/book/show/11996.I_Who_Have_Never_Known_Men) by Jacqueline Harpman
+- *Where Rivers Go to Die* -  Dilman Dila
+- *I Who Have Never Known Men* - Jacqueline Harpman
 
 ## BitDevs Kampala
 
