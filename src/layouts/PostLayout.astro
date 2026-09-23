@@ -48,7 +48,7 @@ const filePath = `content/blog/${id}.md`;
       {
         canonicalUrl && (
           <p class="post-meta canonical-note">
-            Originally published on <a href={canonicalUrl}>Medium</a>
+            Originally published on <a href={canonicalUrl}>{new URL(canonicalUrl).hostname.replace(/^www\./, '')}</a>
           </p>
         )
       }
