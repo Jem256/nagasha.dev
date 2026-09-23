@@ -19,8 +19,7 @@ const TYPE_LABELS: Record<string, string> = {
   <div class="prose">
     <h1>Talks &amp; Press</h1>
     <p class="section-intro">
-      Talks, workshops, interviews, and coverage elsewhere. External, third-party mentions are the strongest
-      form of verification for open source work, so this list stays current.
+      Talks, workshops, interviews, and coverage elsewhere.
     </p>
 
     <ul class="talks-list">
@@ -28,7 +27,7 @@ const TYPE_LABELS: Record<string, string> = {
         entries.map((entry) => (
           <li>
             <span class="talk-type">{TYPE_LABELS[entry.data.type]}</span>
-            <a href={entry.data.url}>{entry.data.title}</a>
+            <a href={entry.data.url} target="_blank" rel="noopener noreferrer">{entry.data.title}</a>
             <p class="talk-meta">
               {entry.data.outlet} &middot; <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</time>
             </p>
