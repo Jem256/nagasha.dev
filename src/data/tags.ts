@@ -12,6 +12,7 @@ export const TAGS = [
     'bitdevs',
     'btrust',
     'career',
+    'open-source',
     'books',
     'reading',
 ] as const;
@@ -32,6 +33,7 @@ export const TAG_LABELS: Record<Tag, string> = {
     bitdevs: 'BitDevs',
     btrust: 'Btrust',
     career: 'Career',
+    'open-source': 'Open Source',
     books: 'Books',
     reading: 'Reading',
 };
