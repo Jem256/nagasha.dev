@@ -27,7 +27,11 @@ const { Content, remarkPluginFrontmatter } = await render(entry);
       <ul class="curated-items">
         {entry.data.items.map((item) => (
           <li>
-            {item.url ? <a href={item.url}>{item.label}</a> : <span>{item.label}</span>}
+            {item.url ? (
+              <a href={item.url} target="_blank" rel="noopener noreferrer">{item.label}</a>
+            ) : (
+              <span>{item.label}</span>
+            )}
             {item.note && <span class="curated-note"> — {item.note}</span>}
           </li>
         ))}

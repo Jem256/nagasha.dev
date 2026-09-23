@@ -47,7 +47,7 @@ const talks = (await getCollection('talks')).filter((entry) => entry.data.tags?.
         talks.map((entry) => (
           <li>
             <span class="result-kind">Talks &amp; Press</span>
-            <a href={entry.data.url}>{entry.data.title}</a>
+            <a href={entry.data.url} target="_blank" rel="noopener noreferrer">{entry.data.title}</a>
             <span class="result-date">{formatDate(entry.data.date)}</span>
           </li>
         ))

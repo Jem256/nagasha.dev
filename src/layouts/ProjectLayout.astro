@@ -28,8 +28,8 @@ const filePath = `content/projects/${id}.md`;
         {role && <span> &middot; {role}</span>}
       </p>
       <p class="project-links">
-        {repo && <a href={repo}>Repository</a>}
-        {website && <a href={website}>Website</a>}
+        {repo && <a href={repo} target="_blank" rel="noopener noreferrer">Repository</a>}
+        {website && <a href={website} target="_blank" rel="noopener noreferrer">Website</a>}
       </p>
       <TagList tags={tags} />
     </header>

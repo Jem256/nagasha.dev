@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntry, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { formatDate } from '../lib/date';
 import { byDateDesc, published } from '../lib/sort';
@@ -14,9 +14,6 @@ const TYPE_LABELS: Record<string, string> = {
   'guest-post': 'Guest post',
   mention: 'Mention',
 };
-
-const nowEntry = await getEntry('pages', 'now');
-const NowContent = nowEntry ? (await render(nowEntry)).Content : null;
 ---
 
 <BaseLayout title="nagasha — Bitcoin & Lightning open source">
@@ -54,7 +51,7 @@ const NowContent = nowEntry ? (await render(nowEntry)).Content : null;
               recentTalks.map((entry) => (
                 <li>
                   <span class="talk-type">{TYPE_LABELS[entry.data.type]}</span>
-                  <a href={entry.data.url}>{entry.data.title}</a>
+                  <a href={entry.data.url} target="_blank" rel="noopener noreferrer">{entry.data.title}</a>
                   <p class="talk-meta">
                     {entry.data.outlet} &middot; <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</time>
                   </p>
@@ -67,20 +64,8 @@ const NowContent = nowEntry ? (await render(nowEntry)).Content : null;
       )
     }
 
-    {
-      NowContent && (
-        <section class="home-section now-snapshot">
-          <h2 class="section-label">Right now</h2>
-          <div class="now-content">
-            <NowContent />
-          </div>
-          <a class="more-link" href="/now/">Full /now &rarr;</a>
-        </section>
-      )
-    }
-
     {/* <section class="home-section home-links">
-      <a href="https://github.com/Jem256">GitHub</a>
+      <a href="https://github.com/Jem256" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a href="/rss.xml">RSS</a>
     </section> */}
   </div>
@@ -149,10 +134,6 @@ const NowContent = nowEntry ? (await render(nowEntry)).Content : null;
     margin-top: 0.5rem;
     font-size: 0.85rem;
     text-decoration: none;
-  }
-
-  .now-content :global(p:last-child) {
-    margin-bottom: 0;
   }
 
   .talks-list {

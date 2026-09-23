@@ -41,7 +41,7 @@ const filePath = `content/${collection}/${id}.md`;
         <ul class="entry-links">
           {links.map((link) => (
             <li>
-              <a href={link.url}>{link.label}</a>
+              <a href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</a>
             </li>
           ))}
         </ul>
