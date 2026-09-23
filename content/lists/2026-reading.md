@@ -1,9 +1,11 @@
 ---
 title: Books I read in 2026
 description: Fiction, memoirs, and everything else that isn't Bitcoin.
-date: 2026-09-10
+date: 2026-09-23
 tags: [books, reading]
 items:
+  - label: "Cursed Daughters"
+    note: Oyinkan Braithwaite
   - label: "Where Rivers Go to Die"
     note: Dilman Dila
   - label: "I Who Have Never Known Men"
