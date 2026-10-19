@@ -5,7 +5,7 @@ import { formatDate } from '../lib/date';
 import { byDateDesc, published } from '../lib/sort';
 
 const recentPosts = byDateDesc(published(await getCollection('blog'))).slice(0, 4);
-const recentTalks = byDateDesc(await getCollection('talks')).slice(0, 3);
+const recentTalks = byDateDesc(await getCollection('talks'));
 
 const TYPE_LABELS: Record<string, string> = {
   talk: 'Talk',
@@ -16,7 +16,7 @@ const TYPE_LABELS: Record<string, string> = {
 };
 ---
 
-<BaseLayout title="nagasha — Bitcoin & Lightning open source">
+<BaseLayout title="nagasha | Bitcoin & Lightning open source">
   <div class="prose home">
     <section class="hero">
       <img class="portrait" src="/images/avatar.png" alt="nagasha's profile picture" width="200" height="200" />
@@ -45,7 +45,7 @@ const TYPE_LABELS: Record<string, string> = {
     {
       recentTalks.length > 0 && (
         <section class="home-section">
-          <h2 class="section-label">Talks &amp; Press</h2>
+          <h2 class="section-label">Press</h2>
           <ul class="talks-list">
             {
               recentTalks.map((entry) => (
@@ -59,7 +59,6 @@ const TYPE_LABELS: Record<string, string> = {
               ))
             }
           </ul>
-          <a class="more-link" href="/talks/">All talks &amp; press &rarr;</a>
         </section>
       )
     }

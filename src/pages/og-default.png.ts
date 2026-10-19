@@ -3,7 +3,7 @@ import { renderOgImage } from '../lib/og-image';
 
 export const GET: APIRoute = () => {
   const png = renderOgImage({
-      title: 'nagasha — Bitcoin & Lightning open source',
+      title: 'nagasha | Bitcoin & Lightning open source',
       kicker: 'nagasha.dev',
   });
   return new Response(new Uint8Array(png), {
