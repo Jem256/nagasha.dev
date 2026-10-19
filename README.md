@@ -19,12 +19,12 @@ npm install
 npm run dev
 ```
 
-Local search (Pagefind) only works after a full build — `astro dev` does not run the `postbuild` indexing step. This is expected; see [Known limitations](#known-limitations).
+Search is currently disabled. To re-enable it, add `<SearchButton />` back to `Header.astro` and `"postbuild": "pagefind --site dist"` back to `package.json`.
 
 ## Build & deploy
 
 ```bash
-npm run build    # astro build, then pagefind indexing via postbuild
+npm run build    # astro build
 npm run preview  # serve the production build locally
 ```
 
@@ -51,7 +51,7 @@ Canonical tags live in `src/data/tags.ts` — using a tag outside that list fail
 - `content/notes/` — longer-running working notes.
 - `content/lists/` — curated, wiki-like lists (`items` array in frontmatter).
 - `content/projects/` — evergreen project pages; automatically surface related posts/notes by shared tag.
-- `content/talks/` — talks, interviews, podcasts, guest posts, and press mentions (`type` field distinguishes them). Index-only, no per-entry pages — link out to the source.
+- `content/talks/` — press mentions, interviews, and the like (`type` field distinguishes them). Shown in the "Press" section on the home page only; no per-entry pages — link out to the source.
 - `content/pages/` — `about.md` and `now.md`, the two standalone pages.
 
 ## Project structure
@@ -80,5 +80,4 @@ src/
 
 ## Known limitations
 
-- Pagefind search is a no-op in `astro dev` — its index only exists after `npm run build`.
 - Sample content across every collection is clearly placeholder 

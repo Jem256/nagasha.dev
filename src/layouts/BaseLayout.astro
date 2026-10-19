@@ -13,7 +13,7 @@ interface Props {
 
 const { title, description, ogImage, jsonLd } = Astro.props;
 
-const siteName = 'nagasha — Bitcoin & Lightning open source';
+const siteName = 'nagasha | Bitcoin & Lightning open source';
 const pageTitle = title === siteName ? title : `${title} · nagasha`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const resolvedOgImage = ogImage ? new URL(ogImage, Astro.site).toString() : new URL('/og-default.png', Astro.site).toString();
@@ -50,9 +50,17 @@ const personJsonLd = {
 
     <script is:inline>
       (function () {
-        const stored = localStorage.getItem('theme');
-        const theme = stored ?? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', theme);
+        const query = window.matchMedia('(prefers-color-scheme: dark)');
+        const stored = () => {
+          try {
+            return localStorage.getItem('theme');
+          } catch (e) {
+            return null;
+          }
+        };
+        const apply = () => document.documentElement.setAttribute('data-theme', stored() ?? (query.matches ? 'dark' : 'light'));
+        apply();
+        query.addEventListener('change', apply);
       })();
     </script>
 
