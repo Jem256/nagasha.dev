@@ -30,7 +30,7 @@ For example, if you ask an agent to create a Bitcoin regtest network with two Li
 
 Polar’s MCP setup has three main components:
 
-1.  **Your AI agent:** A client such as Claude Code, Claude Desktop, or Cursor. This is where you describe what you want to accomplish.
+1.  **Your AI agent:** A client such as Claude, Codex and others. This is where you describe what you want to accomplish.
 2.  **The Polar MCP server:** A server that exposes Polar’s functionality as tools the agent can call.
 3.  **The Polar desktop app:** The application that manages your local Bitcoin and Lightning networks.
 
@@ -52,8 +52,8 @@ You’ll need:
 
 *   [Polar](https://lightningpolar.com/) version 4.0.0 or later.
 *   Docker and Docker Compose.
-*   Node.js 20 or later, for running the MCP server via npx.
-*   An MCP-compatible AI client, such as Claude Code, Claude Desktop, or Cursor.
+*   Node.js 20 or later, for running the MCP server via npx.
+*   An MCP-compatible AI client.
 
 Make sure Docker is running and open the Polar desktop application.
 
@@ -185,6 +185,6 @@ Explore the code in the [polar-skills repository](https://github.com/Jem256/pola
 
 ### Bringing it together
 
-Polar’s MCP server lets an AI agent create networks, configure channels, and retrieve connection details through natural-language instructions. A reusable skill can build on those tools to make the workflow more consistent and repeatable.
+Polar’s MCP server makes it possible for an AI agent to create networks, configure channels, and retrieve connection details through natural-language instructions.
 
-Start with a task you already perform manually, then expand from there. If you notice rough edges or have ideas to improve the MCP tools, contribute or report issues in [Polar’s GitHub repository](https://github.com/jamaljsr/polar).
+Give it a try and explore how an AI agent can simplify your Lightning development workflow. If you encounter rough edges or have ideas for improving the MCP tools, contribute or report an issue in [Polar’s GitHub repository](https://github.com/jamaljsr/polar).
