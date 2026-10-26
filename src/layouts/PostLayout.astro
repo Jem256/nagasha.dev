@@ -7,6 +7,7 @@ import ScrollProgress from '../components/ScrollProgress.astro';
 import RelatedPosts from '../components/RelatedPosts.astro';
 import PrevNextNav from '../components/PrevNextNav.astro';
 import LastUpdated from '../components/LastUpdated.astro';
+import BackLink from '../components/BackLink.astro';
 import { formatDate } from '../lib/date';
 import type { Tag } from '../data/tags';
 
@@ -39,6 +40,7 @@ const filePath = `content/blog/${id}.md`;
 <BaseLayout title={title} description={description}>
   <ScrollProgress />
   <article class="prose">
+    <BackLink href="/blog/" label="All posts" />
     <header class="post-header">
       <h1>{title}</h1>
       <p class="post-meta">
