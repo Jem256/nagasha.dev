@@ -3,7 +3,6 @@ title: "Using Polar’s MCP to Build a Lightning Testing Environment with AI"
 date: "2026-10-24"
 tags: ["polar", "lightning", "bitcoin"]
 draft: false
-canonicalUrl: "https://medium.com/@nagasha/using-polars-mcp-to-build-a-lightning-testing-environment-with-ai-5930ce7b4a3e"
 ---
 
 ![](https://cdn-images-1.medium.com/max/1024/0*HZNzOtbUlqbW6ESr)
